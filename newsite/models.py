@@ -2,7 +2,11 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
-STATUS = ((0, "Draft")), (1, "Published")
+STATUS = (
+    (0, "Draft"),
+    (1, "Published")
+)
+
 
 class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
@@ -16,14 +20,18 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
 
+# Order our posts by created field
     class Meta:
         ordering = ['-created_on']
 
+# Returns string representation of the object
     def __str__(self):
         return self.title
 
+# returns total number of likes on the post
     def number_of_likes(self):
         return self.likes.count()
+
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
