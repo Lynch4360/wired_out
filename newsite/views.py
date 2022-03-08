@@ -1,7 +1,12 @@
-# from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from .models import Post
 from .forms import PostForm
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    # DeleteView
+)
 
 
 class Home(ListView):
@@ -18,7 +23,6 @@ class PostAdd(CreateView):
     model = Post
     form_class = PostForm
     template_name = 'addPost.html'
-    # fields = 'title', 'title_tag', 'author', 'content'
 
 
 class PostUpdate(UpdateView):
