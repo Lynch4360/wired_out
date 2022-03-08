@@ -15,7 +15,7 @@ class postDetail(DetailView):
 class postAdd(CreateView):
     model = Post
     template_name = 'addPost.html'
-    fields = '__all__'
+    fields = 'title', 'author', 'content'
 
 
 def about(request):

@@ -19,7 +19,7 @@ class Post(models.Model):
 
 # Returns string representation of the object
     def __str__(self):
-        return self.title
+        return self.title + ' | ' + str(self.author)
 
 # returns total number of likes on the post
     def number_of_likes(self):
