@@ -1,6 +1,7 @@
 from django import forms
 from .models import Post
 
+
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
@@ -8,9 +9,13 @@ class PostForm(forms.ModelForm):
 
         widgets = {
 
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'title_tag': forms.TextInput(attrs={'class': 'form-control'}),
-            'author': forms.Select(attrs={'class': 'form-control'}),
-            'content': forms.Textarea(attrs={'class': 'form-control'}),
+            'title': forms.TextInput(attrs={'class': 'form-control',
+                                     'placeholder': ''}),
+            'title_tag': forms.TextInput(attrs={'class': 'form-control',
+                                         'placeholder': ''}),
+            'author': forms.Select(attrs={'class': 'form-control',
+                                   'placeholder': ''}),
+            'content': forms.Textarea(attrs={'class': 'form-control',
+                                      'placeholder': ''}),
 
         }
