@@ -7,4 +7,6 @@ urlpatterns = [
          name="post-detail"),
     path('add-post/', newsite_views.PostAdd.as_view(),
          name="post-add"),
+    path('detail/edit/<int:pk>', newsite_views.PostUpdate.as_view(),
+         name='post-update')
 ]

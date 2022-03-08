@@ -16,6 +16,5 @@ class PostForm(forms.ModelForm):
             'author': forms.Select(attrs={'class': 'form-control',
                                    'placeholder': ''}),
             'content': forms.Textarea(attrs={'class': 'form-control',
-                                      'placeholder': ''}),
-
+                                      'placeholder': ''})
         }
