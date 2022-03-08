@@ -11,17 +11,18 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
 
-    {% if title %}
-        <title>Wired Out - {{ title }}</title>
-    {% else %}
-        <title>Wired Out</title>
-    {% endif %}
+    <title>
+        {% block title %}
+            Wired OUT
+        {% endblock %}
+    </title>
+    
 </head>
 <body>
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
             <div class="container">
-                <a class="navbar-brand mr-4" href="/">Wired Out</a>
+                <a class="navbar-brand mr-4" href="{% url 'site-home' %}">Wired Out</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>

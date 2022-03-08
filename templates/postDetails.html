@@ -1,5 +1,17 @@
-<h1>{{ post.title }}</h1>
-<small>Created by: {{ post.author.username }}</small><br/>
-<hr>
-<br>
-{{ post.body }}
+{% extends 'base.html' %}
+{% block title %}{{ post.title_tag }}{% endblock %}
+
+{% block content %}
+
+
+    <h1>{{ post.title }}</h1>
+    <small>Created by: {{ post.author.username }}</small><br/>
+    <hr>
+    <br>
+    {{ post.body }}
+
+    <br/><br/>
+    <a href="{% url 'site-home' %}">Back</a>
+
+
+{% endblock content %}
