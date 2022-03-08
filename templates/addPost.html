@@ -2,6 +2,10 @@
 
 {% block content %}
 
-<h1>Add Blog Post</h1>
+<h1>Create an article</h1>
+
+<form method="POST">
+    {% csrf token %}
+</form>
 
 {% endblock content %}
