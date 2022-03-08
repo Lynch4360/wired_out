@@ -10,7 +10,7 @@ class Post(models.Model):
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     featured_image = CloudinaryField('image', default='placeholder')
-    title_tag = models.CharField(max_length=255, default="WO | Article")
+    title_tag = models.CharField(max_length=255)
     likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
 
 # Order our posts by date posted
