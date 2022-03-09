@@ -8,6 +8,7 @@ from django.views.generic import (
 from users.forms import PostForm, EditForm
 from .models import Post
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
 
 
 class Home(ListView):
@@ -30,7 +31,6 @@ class PostUpdate(UpdateView):
     model = Post
     form_class = EditForm
     template_name = 'updatePost.html'
-
 
 class PostDelete(DeleteView):
     model = Post
