@@ -7,7 +7,7 @@
         <div class="article-metadata">
             <small>Created by: {{ post.author.username }}</small>
             <small class="text-muted">{{ post.date_posted|date:'F d, Y' }}</small>
-            <button class="btn btn-primary float-right"{% url 'site-home' %}>Back</button>
+            <a href="{% url 'site-home' %}" class="btn btn-primary float-right">Back</a>
             <br/>
             <br/>
         </div>
@@ -16,8 +16,8 @@
         <br>
         <p class="article-content">{{ post.content }}</p>
         <br/>
-        <button class="btn btn-primary"{% url 'post-update' post.pk %}>Edit</button>
-        <button class="btn btn-danger"{% url 'post-delete' post.pk %}>Delete</button>
+        <a href="{% url 'post-update' post.pk %}" class="btn btn-primary">Edit</a>
+        <a href="{% url 'post-delete' post.pk %}" class="btn btn-danger">Delete</a>
     </div>
 </article>
 <!-- 
