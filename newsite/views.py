@@ -1,5 +1,3 @@
-from .models import Post
-from .forms import PostForm
 from django.views.generic import (
     ListView,
     DetailView,
@@ -7,6 +5,8 @@ from django.views.generic import (
     UpdateView,
     # DeleteView
 )
+from users.forms import PostForm, EditForm
+from .models import Post
 
 
 class Home(ListView):
@@ -27,5 +27,5 @@ class PostAdd(CreateView):
 
 class PostUpdate(UpdateView):
     model = Post
+    form_class = EditForm
     template_name = 'updatePost.html'
-    fields = ['title', 'title_tag', 'content']
