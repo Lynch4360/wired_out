@@ -3,7 +3,7 @@ from django.views.generic import (
     DetailView,
     CreateView,
     UpdateView,
-    # DeleteView
+    DeleteView
 )
 from users.forms import PostForm, EditForm
 from .models import Post
@@ -29,3 +29,7 @@ class PostUpdate(UpdateView):
     model = Post
     form_class = EditForm
     template_name = 'updatePost.html'
+
+
+class PostDelete(DeleteView):
+    model = PostFormtemplatE_name = 'deletePost.html'
