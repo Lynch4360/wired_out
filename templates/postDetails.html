@@ -2,8 +2,25 @@
 {% block title %}{{ post.title_tag }}{% endblock %}
 
 {% block content %}
-
-
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <small>Created by: {{ post.author.username }}</small>
+            <small class="text-muted">{{ post.date_posted|date:'F d, Y' }}</small>
+            <button class="btn btn-primary float-right"{% url 'site-home' %}>Back</button>
+            <br/>
+            <br/>
+        </div>
+        <br/>
+        <h2><a class="article-title" href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h2>
+        <br>
+        <p class="article-content">{{ post.content }}</p>
+        <br/>
+        <button class="btn btn-primary"{% url 'post-update' post.pk %}>Edit</button>
+        <button class="btn btn-danger"{% url 'post-delete' post.pk %}>Delete</button>
+    </div>
+</article>
+<!-- 
     <h1>{{ post.title }}</h1>
     <small>Created by: {{ post.author.username }}</small><br/>
     <hr>
@@ -11,7 +28,7 @@
     {{ post.content }}
 
     <br/><br/>
-    <a href="{% url 'site-home' %}">Back</a>
+    <a href="{% url 'site-home' %}">Back</a> -->
 
 
 {% endblock content %}
