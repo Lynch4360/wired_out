@@ -149,6 +149,7 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 SUMMERNOTE_THEME = 'bs5'
 
 LOGIN_REDIRECT_URL = 'site-home'
+LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = 'site-home'
 
 # Default primary key field type
