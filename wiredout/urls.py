@@ -9,7 +9,8 @@ urlpatterns = [
     path('register/', user_views.register, name='register'),
     path('summernote/', include('django_summernote.urls')),
     path('', include('newsite.urls'), name='newsite_urls'),
-    path('login/', auth_views.Login.as_view(template_name='login.html'), name='login'),
-    path('logout/', auth_views.Logout.as_view(template_name='logout.html'), name='logout'),
-
+    path('login/', auth_views.LoginView.as_view(template_name='login.html'),
+         name='login'),
+    path('logout/', auth_views.LogoutView.as_view(template_name='logout.html'),
+         name='logout'),
 ]
