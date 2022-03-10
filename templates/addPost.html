@@ -3,6 +3,7 @@
 
 {% block content %}
 
+{% if user.is_authenticated %}
     <h1>Create an article</h1>
     <div class="form-group">
         <form method="POST">
@@ -10,4 +11,8 @@
             {{ form.as_p }}
             <button class="btn btn-primary">Post</button>
     </div>
+{% endif %}
+You must be logged in to access this URL, Please Register as a user, if you
+have registered before, then Please Log In.
+
 {% endblock content %}

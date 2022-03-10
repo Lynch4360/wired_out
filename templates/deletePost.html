@@ -3,6 +3,7 @@
 
 {% block content %}
 
+{% if user.is_authenticated %}
     <div class="content-section">
         <form method="POST">
             {% csrf_token %}
@@ -16,5 +17,8 @@
             </div>
         </form>
     </div>
+{% endif %}
+You must be logged in to access this URL, Please Register as a user, if you
+have registered before, then Please Log In.
 
 {% endblock content %}
