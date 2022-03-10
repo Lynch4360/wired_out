@@ -16,19 +16,15 @@
         <br>
         <p class="article-content">{{ post.content }}</p>
         <br/>
-        <a href="{% url 'post-update' post.pk %}" class="btn btn-primary">Edit</a>
-        <a href="{% url 'post-delete' post.pk %}" class="btn btn-danger">Delete</a>
+        {% if user.is_authenticated %}
+
+            <a href="{% url 'post-update' post.pk %}" class="btn btn-primary">Edit</a>
+            <a href="{% url 'post-delete' post.pk %}" class="btn btn-danger">Delete</a>
+
+        {% endif %}
+        You must be logged in to access this URL, Please Register as a user, if you
+        have registered before, then Please Log In.
     </div>
 </article>
-<!-- 
-    <h1>{{ post.title }}</h1>
-    <small>Created by: {{ post.author.username }}</small><br/>
-    <hr>
-    <br>
-    {{ post.content }}
-
-    <br/><br/>
-    <a href="{% url 'site-home' %}">Back</a> -->
-
 
 {% endblock content %}
