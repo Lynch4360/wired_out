@@ -5,13 +5,18 @@
 {% block content %}
 
 {% if user.is_authenticated %}
-    <h1>Edit Article </h1>
-    <div class="form-group">
-        <form method="POST">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <button class="btn btn-primary">Update</button>
-    </div>
+    {% if user.id == post.author.id %}
+        <h1>Edit Article </h1>
+        <div class="form-group">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button class="btn btn-primary">Update</button>
+        </div>
+    {% else %}
+        You must be logged in to access this URL, Please Register as a user, if you
+        have registered before, then Please Log In.
+    {% endif %}
 {% else %}
     You must be logged in to access this URL, Please Register as a user, if you
     have registered before, then Please Log In.
