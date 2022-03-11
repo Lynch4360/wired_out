@@ -2,6 +2,7 @@
 {% block title %}{{ post.title_tag }}{% endblock %}
 
 {% block content %}
+
 <article class="media content-section">
     <div class="media-body">
         <div class="article-metadata">
@@ -17,9 +18,10 @@
         <p class="article-content">{{ post.content }}</p>
         <br/>
         {% if user.is_authenticated %}
-
+            {% if user.id == post.author.id %}
             <a href="{% url 'post-update' post.pk %}" class="btn btn-primary">Edit</a>
             <a href="{% url 'post-delete' post.pk %}" class="btn btn-danger">Delete</a>
+            {% endif %}
         {% endif %}
     </div>
 </article>
