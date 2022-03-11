@@ -13,9 +13,11 @@
                     {{ post.content|slice:":150" }}
                     <br/><br/>
                     {% if user.is_authenticated %}
-                        <a href="{% url 'post-update' post.pk %}" class="btn btn-primary">Edit</a>
-                    
-                        <a href="{% url 'post-delete' post.pk %}" class="btn btn-danger">Delete</a>
+                        {% if user.id == post.author.id %}
+                            <a href="{% url 'post-update' post.pk %}" class="btn btn-primary">Edit</a>
+                        
+                            <a href="{% url 'post-delete' post.pk %}" class="btn btn-danger">Delete</a>
+                        {% endif %}
                     {% endif %}
                 </div>
             </article>
