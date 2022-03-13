@@ -14,6 +14,9 @@ class Post(models.Model):
     title_tag = models.CharField(max_length=255)
     likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
 
+    def total_likes(self):
+        return self.likes.count()
+
 # Order our posts by date posted
     class Meta:
         ordering = ['-date_posted']

@@ -8,6 +8,13 @@
         <div class="article-metadata">
             <small>Created by: {{ post.author.username }}</small>
             <small class="text-muted">{{ post.date_posted|date:'F d, Y' }}</small>
+            <form action="{% url 'post-like' post.pk %}" method="POST">
+                {% csrf_token %}
+                <br/>
+                <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-primary btn-sm mt-1">
+                    Like
+                </button> - {{ total_likes }} Likes
+            </form>
             <a href="{% url 'site-home' %}" class="btn btn-primary float-right">Back</a>
             <br/>
             <br/>
@@ -23,15 +30,6 @@
             <a href="{% url 'post-delete' post.pk %}" class="btn btn-danger">Delete</a>
             {% endif %}
         {% endif %}
-        <br/><br/>
-        <hr>
-        <br/>
-        <form action="{% url 'post-like' post.pk %}" method="POST">
-            % csrf_token %
-            <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-primary btn-sm">
-                Like
-            </button>
-        </form>
     </div>
 </article>
 
