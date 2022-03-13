@@ -10,5 +10,6 @@ urlpatterns = [
      path('detail/edit/<int:pk>', newsite_views.PostUpdate.as_view(),
           name='post-update'),
      path('detail/<int:pk>/delete', newsite_views.PostDelete.as_view(),
-          name='post-delete')
+          name='post-delete'),
+     path('like/<int:pk>', newsite_views.PostLike.as_view(), name="post-like")
 ]

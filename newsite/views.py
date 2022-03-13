@@ -36,3 +36,7 @@ class PostDelete(DeleteView):
     model = Post
     template_name = 'deletePost.html'
     success_url = reverse_lazy('site-home')
+
+
+def LikeView(request, pk):
+    
