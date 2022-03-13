@@ -26,7 +26,13 @@ class PostDetail(DetailView):
         amount = get_object_or_404(Post, id=self.kwargs['pk'])
         total_likes = amount.total_likes()
         context = super(PostDetail, self).get_context_data(*args, **kwargs)
+
+        liked = False
+        if amount.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
         context["total_likes"] = total_likes
+        context["liked"] = liked
         return context
 
 
@@ -51,5 +57,10 @@ class PostDelete(DeleteView):
 
 def Likes(request, pk):
     post = get_object_or_404(Post, id=request.POST.get('post_id'))
-    post.likes.add(request.user)
+    liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+        liked = True
     return HttpResponseRedirect(reverse('post-detail', args=[str(pk)]))
