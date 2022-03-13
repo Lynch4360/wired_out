@@ -24,8 +24,8 @@ class PostForm(forms.ModelForm):
                                      'placeholder': ''}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control',
                                          'placeholder': ''}),
-            'author': forms.Select(attrs={'class': 'form-control',
-                                   'placeholder': ''}),
+            'author': forms.TextInput(attrs={'class': 'form-control',
+                                     'value':'', 'id':'user', 'type':'hidden'}),
             'content': forms.Textarea(attrs={'class': 'form-control',
                                       'placeholder': ''})
         }
