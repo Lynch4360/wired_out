@@ -36,7 +36,6 @@ class PostDetail(DetailView):
         return context
 
 
-
 class PostAdd(CreateView):
     model = Post
     form_class = PostForm

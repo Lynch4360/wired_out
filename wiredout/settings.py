@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'django_summernote',
     'newsite',
     'users.apps.UsersConfig',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
