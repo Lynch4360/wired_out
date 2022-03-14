@@ -17,4 +17,5 @@ urlpatterns = [
           name='edit_profile'),
      path('password/', user_views.EditPassword.as_view
           (template_name='editPassword.html')),
+     path('password_success/', user_views.PasswordSuccess, name='password_success'),
 ]

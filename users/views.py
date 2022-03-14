@@ -36,7 +36,10 @@ class EditProfile(generic.UpdateView):
 
 class EditPassword(PasswordChangeView):
     form_class = PasswordChangeForm
-    success_url = reverse_lazy('site-home')
+    success_url = reverse_lazy('password_success')
+
+def PasswordSuccess(request):
+    return render(request, 'password_success.html', {})
 
 
 @login_required
