@@ -4,13 +4,20 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 
+
 # associated with user model in a one to one relationship
 class UserProfile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     bio = models.TextField()
+    profile_picture = models.ImageField(null=True, blank=True, upload_to="static/images/profile/")
+    site_url = models.CharField(max_length=200, unique=True, null=True, blank=True)
+    twitter_url = models.CharField(max_length=200, unique=True, null=True, blank=True)
+    fb_url = models.CharField(max_length=200, unique=True, null=True, blank=True)
+    github_url = models.CharField(max_length=200, unique=True, null=True, blank=True)
 
     def __str__(self):
         return str(self.user)
+
 
 class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
