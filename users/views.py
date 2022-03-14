@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegisterForm
+from .forms import UserRegisterForm, EditProfileForm
 from django.views import generic
-from django.contrib.auth.forms import UserChangeForm
 from django.urls import reverse_lazy
 
 
@@ -24,7 +23,7 @@ def register(request):
 
 
 class EditProfile(generic.UpdateView):
-    form_class = UserChangeForm
+    form_class = EditProfileForm
     template_name = 'editProfile.html'
     success_url = reverse_lazy('site-home')
 
