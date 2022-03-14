@@ -31,7 +31,8 @@
         <br/>
         <h2><a class="article-title" href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h2>
         <br>
-        <p class="article-content">{{ post.content }}</p>
+        <p class="article-content">{{ post.content|safe }}</p>
+        
         <br/>
         {% if user.is_authenticated %}
             {% if user.id == post.author.id %}
