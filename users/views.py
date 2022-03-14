@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm
+from django.views import generic
+from django.contrib.auth.forms import UserChangeForm
+from django.urls import reverse_lazy
 
 
 # flash messages display alert to template that disapppear on the next request
@@ -18,6 +21,16 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, 'register.html', {'form': form})
+
+
+class EditProfile(generic.UpdateView):
+    form_class = UserChangeForm
+    template_name = 'editProfile.html'
+    success_url = reverse_lazy('site-home')
+
+    # pass in current user
+    def get_object(self):
+        return self.request.user
 
 
 @login_required
