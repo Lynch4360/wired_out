@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import PasswordChangeForm
 from .forms import UserRegisterForm, EditProfileForm
 from django.views import generic
 from django.urls import reverse_lazy
@@ -30,6 +32,11 @@ class EditProfile(generic.UpdateView):
     # pass in current user
     def get_object(self):
         return self.request.user
+
+
+class EditPassword(PasswordChangeView):
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy('site-home')
 
 
 @login_required
