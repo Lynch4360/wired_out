@@ -11,7 +11,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = RichTextField(blank=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
-    blurb = models.CharField(mac_length=255, default='Click title to see full post')
+    blurb = models.CharField(max_length=255)
     featured_image = CloudinaryField('image', default='placeholder')
     title_tag = models.CharField(max_length=255)
     likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
