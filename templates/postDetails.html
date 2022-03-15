@@ -54,10 +54,18 @@
                 {{ post.author.last_name }}
             </h5>
             <p class="small text-muted">
-                <a href="{{ post.author.site_url }}">Site</a> |
-                <a href="{{ post.author.fb_url }}">Facebook</a> |
-                <a href="{{ post.author.twitter_url }}">Twitter</a> |
-                <a href="{{ post.author.github_url }}">Github</a> 
+                {% if post.author.userprofile.site_url %}
+                    <a href="{{ post.author.site_url }}">Site</a>
+                {% endif %}
+                {% if post.author.userprofile.fb_url %}
+                    | <a href="{{ post.author.fb_url }}">Facebook</a>
+                {% endif %}
+                {% if post.author.userprofile.twitter_url %}
+                    | <a href="{{ post.author.twitter_url }}">Twitter</a>
+                {% endif %}
+                {% if post.author.userprofile.github_url %}
+                    | <a href="{{ post.author.github_url }}">Github</a>
+                {% endif %}
             </p>
             <p class="card-text">
                 {{ post.author.userprofile.bio }}
