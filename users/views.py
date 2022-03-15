@@ -1,10 +1,12 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
 from .forms import UserRegisterForm, EditProfileForm, PasswordChangingForm
 from django.views import generic
+from django.views.generic import DetailView
 from django.urls import reverse_lazy
+from newsite.models import UserProfile
 
 
 # flash messages display alert to template that disapppear on the next request
@@ -21,6 +23,20 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, 'register.html', {'form': form})
+
+
+class ProfilePage(DetailView):
+    model = UserProfile
+    template_name = 'userProfile.html'
+
+    def get_context_data(self, *args, **kwargs):
+        users = UserProfile.objects.all()
+        context = super(ProfilePage, self).get_context_data(*args, **kwargs)
+
+        profile_user = get_object_or_404(UserProfile, id=self.kwargs['pk'])
+
+        context["profile_user"] = profile_user
+        return context
 
 
 class EditProfile(generic.UpdateView):
