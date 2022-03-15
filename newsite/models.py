@@ -7,8 +7,6 @@ from ckeditor.fields import RichTextField
 
 # associated with user model in a one to one relationship
 class UserProfile(models.Model):
-    # user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    # user = request.user.username 
     bio = models.TextField()
     profile_picture = models.ImageField(null=True, blank=True, upload_to="images/")
     site_url = models.CharField(max_length=200, unique=True, null=True, blank=True)

@@ -1,7 +1,23 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
-from newsite.models import Post
+from newsite.models import Post, UserProfile
+
+
+class ProfilePageForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['bio', 'profile_picture', 'site_url', 'twitter_url', 'fb_url'
+                  , 'github_url']
+            
+        widgets = {
+            'bio': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'profile_picture': forms.TextInput(attrs={'class': 'form-control'}),
+            'site_url': forms.TextInput(attrs={'class': 'form-control'}),
+            'twitter_url': forms.TextInput(attrs={'class': 'form-control'}),
+            'fb_url': forms.TextInput(attrs={'class': 'form-control'}),
+            'github_url': forms.TextInput(attrs={'class': 'form-control'}),
+        }
 
 
 class UserRegisterForm(UserCreationForm):

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
-from .forms import UserRegisterForm, EditProfileForm, PasswordChangingForm
+from .forms import UserRegisterForm, EditProfileForm, PasswordChangingForm, ProfilePageForm
 from django.views import generic
 from django.views.generic import DetailView, CreateView
 from django.urls import reverse_lazy
@@ -27,17 +27,14 @@ def register(request):
 
 class CreateProfilePage(CreateView):
     model = UserProfile
+    form_class = ProfilePageForm
     template_name = "create_user_profile_page.html"
-    fields = ['bio', 'profile_picture', 'site_url', 'twitter_url', 'fb_url', 'github_url']
-    current_user_username = request.users.username
-    print(current_user_username)
-
     # Making the user ID available to profile
     # when we save form it will save the user
     # credit to -
     # https://stackoverflow.com/questions/68359593/how-to-write-form-valid-method-in-django-correctly
     def form_valid(self, form):
-        form.instance.user = self.request.users
+        form.instance.user = self.request.user
         return super().form_valid(form)
 
 
