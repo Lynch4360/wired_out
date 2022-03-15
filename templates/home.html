@@ -10,6 +10,7 @@
                         <small class="text-muted">{{ post.date_posted|date:'F d, Y' }}</small>
                     </div>
                     <h2><a class="article-title mb-2" href="{% url 'post-detail' post.pk %}">{{ post.title }}</a></h2>
+                    {{ post.blurb }}
                     <br/><br/>
                     {% if user.is_authenticated %}
                         {% if user.id == post.author.id %}
@@ -18,7 +19,6 @@
                             <a href="{% url 'post-delete' post.pk %}" class="btn btn-danger">Delete</a>
                         {% endif %}
                     {% endif %}
-                    {{ post.blurb }}
                 </div>
             </article>
         {% endfor %}
