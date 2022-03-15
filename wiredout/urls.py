@@ -1,13 +1,14 @@
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
 from users import views as user_views
 
 
 urlpatterns = [
      path('admin/', admin.site.urls),
      path('register/', user_views.register, name='register'),
-     path('summernote/', include('django_summernote.urls')),
      path('', include('newsite.urls'), name='newsite_urls'),
      path('login/', auth_views.LoginView.as_view(template_name='login.html'),
           name='login'),
@@ -17,5 +18,10 @@ urlpatterns = [
           name='edit_profile'),
      path('password/', user_views.EditPassword.as_view
           (template_name='editPassword.html')),
-     path('password_success/', user_views.PasswordSuccess, name='password_success'),
+     path('password_success/', user_views.PasswordSuccess,
+          name='password_success'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.
+                          MEDIA_ROOT)
