@@ -20,7 +20,8 @@ urlpatterns = [
           (template_name='editPassword.html')),
      path('password_success/', user_views.PasswordSuccess,
           name='password_success'),
-     path('<int:pk>/profile/', user_views.ProfilePage.as_view(), name='profile_page')
+     path('<int:pk>/profile/', user_views.ProfilePage.as_view(),
+          name='profile_page')
 ]
 
 if settings.DEBUG:

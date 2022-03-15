@@ -1,8 +1,45 @@
 {% extends 'base.html'%}
+{% load static %}
 
 {% block content %}
 
 <h1>User Profile</h1>
-{{ profile_user }}
+
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-2">
+        {% if profile_user.profile_picture %}
+            <img src="{{ profile_user.profile_picture.url }}" class="img-fluid rounded-start" alt="Profile image for user">
+        {% else %}
+            <img src="{% static 'images/default_profile_pic.jpg' %}" class="img-fluid rounded-start" alt="Defaultimage for user">
+        {% endif %}
+        </div>
+        <div class="col-md-10">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ profile_user.user.first_name }}
+                    {{ profile_user.user.last_name }}
+                </h5>
+                <p class="small text-muted">
+                    {% if profile_user.site_url %}
+                        | <a href="{{ profile_user.site_url }}">Site</a>
+                    {% endif %}
+                    {% if profile_user.fb_url %}
+                        | <a href="{{ profile_user.fb_url }}">Facebook</a>
+                    {% endif %}
+                    {% if profile_user.twitter_url %}
+                        | <a href="{{ profile_user.twitter_url }}">Twitter</a>
+                    {% endif %}
+                    {% if profile_user.github_url %}
+                        | <a href="{{ profile_user.github_url }}">Github</a>
+                    {% endif %}
+                </p>
+                <p class="card-text">
+                    {{ profile_page.bio }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock content %}
