@@ -21,7 +21,9 @@ urlpatterns = [
      path('password_success/', user_views.PasswordSuccess,
           name='password_success'),
      path('<int:pk>/profile/', user_views.ProfilePage.as_view(),
-          name='profile_page')
+          name='profile_page'),
+     path('<int:pk>/edit_profile_page/', user_views.EditProfilePage.as_view(),
+          name='edit_profile_page')
 ]
 
 if settings.DEBUG:

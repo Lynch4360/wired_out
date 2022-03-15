@@ -39,6 +39,14 @@ class ProfilePage(DetailView):
         return context
 
 
+class EditProfilePage(generic.UpdateView):
+    model = UserProfile
+    template_name = 'edit_profile_page.html'
+    fields = ['bio', 'profile_picture', 'site_url', 'twitter_url', 'fb_url', 'github_url']
+    success_url = reverse_lazy('site-home')
+
+
+
 class EditProfile(generic.UpdateView):
     form_class = EditProfileForm
     template_name = 'editProfile.html'
