@@ -40,13 +40,17 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenu">
                                     <a class="dropdown-item" href="{% url 'profile_page' user.userprofile.id %}">Profile</a>
+                                {% if user.profile.id %}
                                     <a class="dropdown-item" href="{% url 'edit_profile_page' user.userprofile.id %}">Edit Profile Page</a>
+                                {% else %}
+                                    <a class="dropdown-item" href="{% url '' user.userprofile.id %}">Create a Profile Page</a>
+                                {% endif %}
                                     <a class="dropdown-item" href="{% url 'edit_profile' %}">Edit profile settings</a>
                                 </div>
                             </li>
                                 <a class="nav-item nav-link" href="{% url 'logout' %}">Log Out</a>
                         </div>
-                        
+
                     {% else %}
                             <div class="navbar-nav ml-auto">
                                 <a class="nav-item nav-link" href="{% url 'login' %}">Log In</a>
