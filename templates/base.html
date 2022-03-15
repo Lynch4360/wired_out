@@ -35,17 +35,18 @@
                         <div class="navbar-nav ml-auto">
                             <a class="nav-item nav-link" href="{% url 'post-add' %}">Create Article</a>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" araia-expanded="false">
                                     Profile
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-                                    <a class="dropdown-item" href="{% url 'profile_page' user.userprofile.id %}">Profile</a>
-                                {% if user.profile.id %}
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{% url 'edit_profile' %}">Edit Account settings</a>
+                                {% if user.userprofile.id %}
+                                    <a class="dropdown-item" href="{% url 'profile_page' user.userprofile.id %}">View Profile Page</a>
                                     <a class="dropdown-item" href="{% url 'edit_profile_page' user.userprofile.id %}">Edit Profile Page</a>
+                                    
                                 {% else %}
-                                    <a class="dropdown-item" href="{% url '' user.userprofile.id %}">Create a Profile Page</a>
+                                    <a class="dropdown-item" href="{% url 'create_profile_page' %}">Create Profile Page</a>
                                 {% endif %}
-                                    <a class="dropdown-item" href="{% url 'edit_profile' %}">Edit profile settings</a>
                                 </div>
                             </li>
                                 <a class="nav-item nav-link" href="{% url 'logout' %}">Log Out</a>
@@ -55,8 +56,9 @@
                             <div class="navbar-nav ml-auto">
                                 <a class="nav-item nav-link" href="{% url 'login' %}">Log In</a>
                                 <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
-                    {% endif %}
                             </div>
+                    {% endif %}
+                            
                     </div>
                 </div>
             </div>

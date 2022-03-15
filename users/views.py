@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
 from .forms import UserRegisterForm, EditProfileForm, PasswordChangingForm
 from django.views import generic
-from django.views.generic import DetailView
+from django.views.generic import DetailView, CreateView
 from django.urls import reverse_lazy
 from newsite.models import UserProfile
 
@@ -23,6 +23,22 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, 'register.html', {'form': form})
+
+
+class CreateProfilePage(CreateView):
+    model = UserProfile
+    template_name = "create_user_profile_page.html"
+    fields = ['bio', 'profile_picture', 'site_url', 'twitter_url', 'fb_url', 'github_url']
+    current_user_username = request.users.username
+    print(current_user_username)
+
+    # Making the user ID available to profile
+    # when we save form it will save the user
+    # credit to -
+    # https://stackoverflow.com/questions/68359593/how-to-write-form-valid-method-in-django-correctly
+    def form_valid(self, form):
+        form.instance.user = self.request.users
+        return super().form_valid(form)
 
 
 class ProfilePage(DetailView):
@@ -44,7 +60,6 @@ class EditProfilePage(generic.UpdateView):
     template_name = 'edit_profile_page.html'
     fields = ['bio', 'profile_picture', 'site_url', 'twitter_url', 'fb_url', 'github_url']
     success_url = reverse_lazy('site-home')
-
 
 
 class EditProfile(generic.UpdateView):

@@ -23,7 +23,9 @@ urlpatterns = [
      path('<int:pk>/profile/', user_views.ProfilePage.as_view(),
           name='profile_page'),
      path('<int:pk>/edit_profile_page/', user_views.EditProfilePage.as_view(),
-          name='edit_profile_page')
+          name='edit_profile_page'),
+     path('create_profile_page/', user_views.CreateProfilePage.as_view(),
+          name='create_profile_page')
 ]
 
 if settings.DEBUG:
