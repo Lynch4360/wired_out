@@ -7,6 +7,7 @@ from ckeditor.fields import RichTextField
 
 # associated with user model in a one to one relationship
 class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     bio = models.TextField()
     profile_picture = models.ImageField(null=True, blank=True, upload_to="images/")
     site_url = models.CharField(max_length=200, unique=True, null=True, blank=True)
@@ -16,6 +17,9 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return str(self.user)
+
+    def get_absolute_url(self):
+        return reverse('profile_page', args=[self.id])
 
 
 class Post(models.Model):
@@ -40,3 +44,7 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('post-detail', args=[self.id])
+
+
+# class Comment(models.Model):
+
