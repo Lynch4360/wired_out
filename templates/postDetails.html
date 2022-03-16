@@ -49,7 +49,9 @@
     {% if not post.comments.all %}
         This post has no comments, comment below to join the conversation <a href="#">here</a>
     {% else %}
-    
+        <a href="">Add Comment</a>
+        <br/>
+        <hr>
         {% for comment in post.comments.all %}
             <strong>
                 {{ comment.name }} -

@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+{% block title %}Comment on an Article{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+    <h1>Add comment.</h1>
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.media }}
+            {{ form.as_p }}
+            <button class="btn btn-primary">Comment</button>
+    </div>
+{% else %}
+    You must be logged in to make a comment, Please Register as a user, if you
+    have registered before, then Please Log In.
+{% endif %}
+
+{% endblock content %}
