@@ -42,8 +42,10 @@
             {% endif %}
         </div>
     </article>
+    <br/>
+    <hr>
     <h2>Comments</h2>
-
+    <hr>
     {% if not post.comments.all %}
         This post has no comments, comment below to join the conversation <a href="#">here</a>
     {% else %}
@@ -53,8 +55,10 @@
                 {{ comment.name }} -
                 {{ comment.date_added }}
             </strong>
-            <br/>
-            {{ comment.body }}
+            <br/><br/>
+                {{ comment.body }}
+            <br/><br/>
+        {% endfor %}
     {% endif %}
     <br/>
     <div class="card mb-3">
