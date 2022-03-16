@@ -11,13 +11,13 @@
         {% if profile_user.profile_picture %}
             <img src="{{ profile_user.profile_picture.url }}" class="img-fluid rounded-start" alt="Profile image for user">
         {% else %}
-            <img src="{% static 'images/default_profile_pic.jpg' %}" class="img-fluid rounded-start" alt="Defaultimage for user">
+            <img src="{% static 'images/default_profile_pic.jpg' %}" class="img- rounded-start" alt="Defaultimage for user">
         {% endif %}
         </div>
         <div class="col-md-10">
             <div class="card-body">
                 <h5 class="card-title">
-                    {{ profile_user.first_name }}
+                    {{ profile_user.user.first_name }}
                     {{ profile_user.user.last_name }}
                 </h5>
                 <p class="small text-muted">
@@ -35,7 +35,7 @@
                     {% endif %}
                 </p>
                 <p class="card-text">
-                    {{ profile_page.bio }}
+                    {{ profile_user.bio }}
                 </p>
             </div>
         </div>
