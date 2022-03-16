@@ -42,6 +42,20 @@
             {% endif %}
         </div>
     </article>
+    <h2>Comments</h2>
+
+    {% if not post.comments.all %}
+        This post has no comments, comment below to join the conversation <a href="#">here</a>
+    {% else %}
+    
+        {% for comment in post.comments.all %}
+            <strong>
+                {{ comment.name }} -
+                {{ comment.date_added }}
+            </strong>
+            <br/>
+            {{ comment.body }}
+    {% endif %}
     <br/>
     <div class="card mb-3">
         <div class="row g-0">
