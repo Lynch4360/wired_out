@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
-from .forms import UserRegisterForm, EditProfileForm, PasswordChangingForm, ProfilePageForm
+from .forms import UserRegisterForm, EditProfileForm, PasswordChangingForm, ProfilePageForm, AddCommentForm
 from django.views import generic
 from django.views.generic import DetailView, CreateView
 from django.urls import reverse_lazy
@@ -39,10 +39,20 @@ class CreateProfilePage(CreateView):
 
 
 class AddComment(CreateView):
-    model = Comments
-    form_class = CommentForm
+    model = Comment
+    form_class = AddCommentForm
     template_name = 'add_comment.html'
-    fields = '__all__'
+    success_url = reverse_lazy('site-home')
+    # Making the user ID available to profile
+    # when we save form it will save the user
+    # credit to -
+    # https://stackoverflow.com/questions/68359593/how-to-write-form-valid-method-in-django-correctly
+
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form)
+
+
 class ProfilePage(DetailView):
     model = UserProfile
     template_name = 'userProfile.html'

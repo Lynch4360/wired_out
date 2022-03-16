@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
-from newsite.models import Post, UserProfile
+from newsite.models import Post, UserProfile, Comment
 
 
 class ProfilePageForm(forms.ModelForm):
@@ -11,8 +11,7 @@ class ProfilePageForm(forms.ModelForm):
                   , 'github_url']
             
         widgets = {
-            'bio': forms.TextInput(attrs={'class': 'form-control'}),
-            # 'profile_picture': forms.TextInput(attrs={'class': 'form-control'}),
+            'bio': forms.Textarea(attrs={'class': 'form-control'}),
             'site_url': forms.TextInput(attrs={'class': 'form-control'}),
             'twitter_url': forms.TextInput(attrs={'class': 'form-control'}),
             'fb_url': forms.TextInput(attrs={'class': 'form-control'}),
@@ -33,14 +32,11 @@ class UserRegisterForm(UserCreationForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'title_tag', 'author', 'blurb', 'content')
+        fields = ('title', 'title_tag', 'blurb', 'content')
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control'}),
-            'author': forms.TextInput(attrs={'class': 'form-control',
-                                      'value': '', 'id': 'user', 'type':
-                                       'hidden'}),
             'blurb': forms.Textarea(attrs={'class': 'form-control'}),
             'content': forms.Textarea(attrs={'class': 'form-control'})
         }
@@ -56,6 +52,17 @@ class EditForm(forms.ModelForm):
             'title_tag': forms.TextInput(attrs={'class': 'form-control'}),
             'blurb': forms.Textarea(attrs={'class': 'form-control'}),
             'content': forms.Textarea(attrs={'class': 'form-control'})
+        }
+
+
+class AddCommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['name', 'body']
+
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'body': forms.Textarea(attrs={'class': 'form-control'})
         }
 
 
