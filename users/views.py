@@ -6,7 +6,7 @@ from .forms import UserRegisterForm, EditProfileForm, PasswordChangingForm, Prof
 from django.views import generic
 from django.views.generic import DetailView, CreateView
 from django.urls import reverse_lazy
-from newsite.models import UserProfile
+from newsite.models import UserProfile, Comment
 
 
 # flash messages display alert to template that disapppear on the next request
@@ -38,6 +38,11 @@ class CreateProfilePage(CreateView):
         return super().form_valid(form)
 
 
+class AddComment(CreateView):
+    model = Comments
+    form_class = CommentForm
+    template_name = 'add_comment.html'
+    fields = '__all__'
 class ProfilePage(DetailView):
     model = UserProfile
     template_name = 'userProfile.html'
